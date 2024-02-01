@@ -34,11 +34,11 @@ class WordProcess:
 
         # removing stopwords and punctuations
         stops = stopwords.words('english')
-        stops.extend(["..","..."])
+        stops.extend(["..","...",])
         puncts = string.punctuation
         clean = []
         for word in tkns:
-            if word not in stops and word not in puncts:
+            if len(word) > 1 and word not in stops and word not in puncts:
                 clean.append(word)
 
         # word lemmatization
@@ -51,5 +51,8 @@ class WordProcess:
         tkns = None
         clean = None
         word_tags = None
-        
+
         return word_lemm
+    
+    def process_sent2sent(self, sent):
+        return " ".join(self.process_sentence(sent))
